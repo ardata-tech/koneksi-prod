@@ -36,7 +36,7 @@ variable "droplet_count" {
 
 variable "droplet_size" {
   type    = string
-  default = "s-2vcpu-2gb"
+  default = "s-1vcpu-1gb"
 }
 
 variable "droplet_image" {
