@@ -14,6 +14,7 @@ variable "apps" {
     env_scope   = optional(string, "RUN_TIME")
     http_port   = optional(number)
     health_check_path = optional(string)
+    domains     = optional(list(string), [])
   }))
   validation {
     condition = alltrue([

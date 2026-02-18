@@ -8,3 +8,7 @@ output "app_live_urls" {
 output "app_urns" {
   value = [for a in digitalocean_app.this : a.urn]
 }
+
+output "app_ids" {
+  value = [for a in digitalocean_app.this : a.id]
+}

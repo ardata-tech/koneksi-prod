@@ -20,6 +20,13 @@ resource "digitalocean_app" "this" {
       }
     }
 
+    dynamic "domain" {
+      for_each = var.apps[count.index].domains == null ? [] : var.apps[count.index].domains
+      content {
+        name = domain.value
+      }
+    }
+
     service {
       name               = "web"
       instance_count     = var.instance_count

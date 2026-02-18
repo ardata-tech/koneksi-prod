@@ -24,6 +24,21 @@ variable "db_name" {
   default = "koneksi"
 }
 
+variable "droplet_ids" {
+  type    = list(string)
+  default = []
+}
+
+variable "allowed_ips" {
+  type    = list(string)
+  default = []
+}
+
+variable "allowed_app_ids" {
+  type    = list(string)
+  default = []
+}
+
 variable "vpc_uuid" {
   type    = string
   default = null

@@ -44,6 +44,9 @@ module "databases" {
   name_prefix = local.name_prefix
   region      = var.region
   vpc_uuid    = digitalocean_vpc.main.id
+  droplet_ids = module.droplets.droplet_ids
+  allowed_ips = var.db_allowed_ips
+  allowed_app_ids = module.apps.app_ids
   tags        = local.tags
 
   postgres = {

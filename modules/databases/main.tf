@@ -57,3 +57,61 @@ resource "digitalocean_database_db" "mongo" {
   cluster_id = each.value.id
   name       = var.db_name
 }
+
+resource "digitalocean_database_firewall" "postgres" {
+  for_each   = digitalocean_database_cluster.postgres
+  cluster_id = each.value.id
+
+  dynamic "rule" {
+    for_each = var.droplet_ids
+    content {
+      type  = "droplet"
+      value = rule.value
+    }
+  }
+
+  dynamic "rule" {
+    for_each = var.allowed_ips
+    content {
+      type  = "ip_addr"
+      value = rule.value
+    }
+  }
+
+  dynamic "rule" {
+    for_each = var.allowed_app_ids
+    content {
+      type  = "app"
+      value = rule.value
+    }
+  }
+}
+
+resource "digitalocean_database_firewall" "mongo" {
+  for_each   = digitalocean_database_cluster.mongo
+  cluster_id = each.value.id
+
+  dynamic "rule" {
+    for_each = var.droplet_ids
+    content {
+      type  = "droplet"
+      value = rule.value
+    }
+  }
+
+  dynamic "rule" {
+    for_each = var.allowed_ips
+    content {
+      type  = "ip_addr"
+      value = rule.value
+    }
+  }
+
+  dynamic "rule" {
+    for_each = var.allowed_app_ids
+    content {
+      type  = "app"
+      value = rule.value
+    }
+  }
+}

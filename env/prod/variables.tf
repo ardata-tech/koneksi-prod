@@ -28,7 +28,7 @@ variable "vpc_ip_range" {
   default = "10.10.0.0/16"
 }
 
-# Droplets (1 redis + 2 vault = 3 total)
+# Droplets (1 redis + 3 vault = 4 total)
 variable "droplet_count" {
   type    = number
   default = 3
@@ -90,6 +90,11 @@ variable "mongo_nodes" {
   default = 1
 }
 
+variable "db_allowed_ips" {
+  type    = list(string)
+  default = []
+}
+
 variable "db_name" {
   type    = string
   default = "koneksi"
@@ -109,6 +114,7 @@ variable "apps" {
     env_scope   = optional(string, "RUN_TIME")
     http_port   = optional(number)
     health_check_path = optional(string)
+    domains     = optional(list(string), [])
   }))
   validation {
     condition = alltrue([
