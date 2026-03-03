@@ -31,7 +31,7 @@ variable "vpc_ip_range" {
 # Droplets (1 redis + 3 vault = 4 total)
 variable "droplet_count" {
   type    = number
-  default = 3
+  default = 4
 }
 
 variable "droplet_size" {
